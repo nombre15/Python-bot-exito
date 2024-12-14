@@ -85,10 +85,13 @@ departure_date.click()
 # Wait time for the element to appear
 time.sleep(1)
 arrival_date = bot.find_element(By.XPATH, '/html/body/div[9]/div[2]/div[2]/div[1]/div/div[2]/div/div/div/div[2]/div/div[1]/div/div[1]/div/div[3]/div/div[3]/div[2]')
-arrival_date.click()                    
+arrival_date.click()
+
 
 accept_button = bot.find_element(By.XPATH, '/html/body/div[9]/div[2]/div[2]/div[2]/button[2]')
 accept_button.click()
+
+
 
 rooms_selector = bot.find_element(By.XPATH, '/html/body/form/div[3]/div/div[2]/article/div/div[1]/div/div[1]/div/div/div[2]/div[2]/div[3]/div[2]/div[1]/div/div/div[3]/div/div/div/div')
 rooms_selector.click()
@@ -103,3 +106,56 @@ add_adult_button.click()
 
 accept_button = bot.find_element(By.XPATH, '/html/body/form/div[3]/div/div[2]/article/div/div[1]/div/div[1]/div/div/div[2]/div[2]/div[3]/div[4]/div[2]/div[2]/button')
 accept_button.click()
+
+time.sleep(2)
+
+
+# click in search button
+search_button = bot.find_element(By.XPATH,'/html/body/form/div[3]/div/div[2]/article/div/div[1]/div/div[1]/div/div/div[2]/div[2]/div[3]/div[2]/div[1]/div/div/div[4]')
+search_button.click()
+
+
+time.sleep(10)
+# change window
+mainWindow = bot.current_window_handle
+bot.switch_to.window(bot.window_handles[1])
+
+time.sleep(5)
+
+# search prices containers
+prices = bot.find_elements(By.CLASS_NAME, 'totalpackprice')
+
+# print prices
+for price in prices:
+    print(price.text)
+    print("---------------------")
+
+time.sleep(5)
+
+# select de first airline in the list
+airline = bot.find_elements(By.NAME, 'checkbox-0')
+airline[0].click()
+
+time.sleep(15)
+
+prices = bot.find_elements(By.CLASS_NAME, 'totalpackprice')
+
+print("prices with the airline"+airline[0].text)
+for price in prices:
+    print(price.text)
+    print("---------------------")
+
+time.sleep(5)
+
+#scroll to the footer
+bot.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+
+time.sleep(5)
+
+whatsapp_button = bot.find_element(By.XPATH, '/html/body/div[3]/div[1]/div[2]/div[5]/footer/div[2]/div/div/div[1]/div/p[1]/a')
+whatsapp_button.click()
+
+time.sleep(5)
+
+#terminate the bot
+bot.quit()
