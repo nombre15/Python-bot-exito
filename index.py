@@ -39,6 +39,7 @@ try:
     # Return to the original html
     bot.switch_to.default_content()
 
+# If it doesn't exist, then notify through the console and continue normally
 except:
   print("Pop-up doesnt exist.")
 
@@ -49,18 +50,16 @@ flights_hotel.click()
 origin_input = bot.find_element(By.XPATH, '/html/body/form/div[3]/div/div[2]/article/div/div[1]/div/div[1]/div/div/div[2]/div[2]/div[3]/div[2]/div[1]/div/div/div[1]/div/div[1]/div/div/input')
 origin_input.click()
 
-# Wait time for the element to appear
+# Wait time for the updated input to appear
 time.sleep(1)
 origin_input = bot.find_element(By.XPATH, '/html/body/form/div[3]/div/div[2]/article/div/div[1]/div/div[1]/div/div/div[2]/div[2]/div[3]/div[5]/div[2]/input')
 origin_input.send_keys(origin)  
 origin_input.send_keys(Keys.ENTER)         
 
-print("origen: " + origin)
-
 destination_input = bot.find_element(By.XPATH, '/html/body/form/div[3]/div/div[2]/article/div/div[1]/div/div[1]/div/div/div[2]/div[2]/div[3]/div[2]/div[1]/div/div/div[1]/div/div[3]/div/div/input')
 destination_input.click()
 
-# Wait time for the element to appear
+# Wait time for the updated input to appear
 time.sleep(1)
 destination_input = bot.find_element(By.XPATH, '/html/body/form/div[3]/div/div[2]/article/div/div[1]/div/div[1]/div/div/div[2]/div[2]/div[3]/div[5]/div[2]/input')
 destination_input.send_keys(destination)
@@ -69,8 +68,6 @@ destination_input.send_keys(destination)
 time.sleep(2)
 chosen_option = bot.find_element(By.XPATH, '/html/body/form/div[3]/div/div[2]/article/div/div[1]/div/div[1]/div/div/div[2]/div[2]/div[3]/div[5]/ul')
 chosen_option.click()
-
-print("destino: " + destination)
 
 # Wait time for the element to disappear
 time.sleep(1)
@@ -87,15 +84,13 @@ time.sleep(1)
 arrival_date = bot.find_element(By.XPATH, '/html/body/div[9]/div[2]/div[2]/div[1]/div/div[2]/div/div/div/div[2]/div/div[1]/div/div[1]/div/div[3]/div/div[3]/div[2]')
 arrival_date.click()
 
-
 accept_button = bot.find_element(By.XPATH, '/html/body/div[9]/div[2]/div[2]/div[2]/button[2]')
 accept_button.click()
-
-
 
 rooms_selector = bot.find_element(By.XPATH, '/html/body/form/div[3]/div/div[2]/article/div/div[1]/div/div[1]/div/div/div[2]/div[2]/div[3]/div[2]/div[1]/div/div/div[3]/div/div/div/div')
 rooms_selector.click()
 
+# Wait time for the element to appear
 time.sleep(1)
 add_room_button = bot.find_element(By.XPATH, '/html/body/form/div[3]/div/div[2]/article/div/div[1]/div/div[1]/div/div/div[2]/div[2]/div[3]/div[4]/div[2]/div[1]/button[1]')
 add_room_button.click()                       
